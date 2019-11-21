@@ -23,6 +23,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -30,6 +31,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.entities.Department;
 import model.entities.Seller;
 import model.services.DepartmentService;
 import model.services.SellerService;
@@ -61,6 +63,9 @@ public class SellerListController implements Initializable, DataChangeListener {
 
 	@FXML
 	private TableColumn<Seller, Seller> tableColumnREMOVE;
+	
+	@FXML
+	private ComboBox<Department> comboBoxDepartment;
 
 	@FXML
 	private Button btNew;
@@ -116,7 +121,11 @@ public class SellerListController implements Initializable, DataChangeListener {
 			SellerFormController controller = loader.getController();
 			controller.setSeller(obj);
 			controller.setService(new SellerService(), new DepartmentService());
+
 			controller.loadAssociatedObjects();
+
+
+
 			controller.subscribeDataChangeListener(this);
 			controller.updateFormData();
 			controller.updateFormData();
